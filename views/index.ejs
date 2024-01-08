@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laca Scam List</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="header">
+      <nav class="navbar">
+        <h1 class="header_title">Laca Scam List</h1>
+        <ul>
+          <li class="navbar_element"><a href="/newscam">Add Scam</a></li>
+        </ul>
+      </nav>
+    </section>
+    <section class="main">
+      <main>
+        <div class="scam_list">
+          <% scams.forEach((scam) => { %>
+          <div class="scam_item">
+            <form action="/deleteScam" method="post">
+              <button
+                class="deleteScam"
+                type="submit"
+                name="deleteItemId"
+                value="<%= scam.id %>"
+              >
+                Delete
+              </button>
+            </form>
+
+            <h2 class="scam_name"><%= scam.scam_name %></h2>
+            <span class="scam_description"><%= scam.scam_description %></span>
+          </div>
+          <% }) %>
+        </div>
+      </main>
+    </section>
+    <footer><%= new Date().getFullYear() %> &copy; Varga Dániel</footer>
+  </body>
+</html>

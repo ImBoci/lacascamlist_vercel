@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laca Scam List</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="header">
+      <nav class="navbar">
+        <h1 class="header_title">Laca Scam List</h1>
+      </nav>
+    </section>
+    <section class="main">
+      <div class="newScamForm">
+        <form action="/newscam" class="newscam" method="post">
+          <div>
+            <input
+              type="text"
+              class="scamTitle"
+              name="newScamTitle"
+              autocomplete="off"
+              autofocus="true"
+              required
+              maxlength="50"
+            />
+            <label for="newScamTitle" class="titleLabel">Scam title</label>
+            <!-- <input
+            type="text"
+            class="scamDescripton"
+            name="newScamDescription"
+            placeholder="Description"
+            autocomplete="off"
+            required
+          /> -->
+            <textarea
+              name="newScamDescription"
+              class="scamDescripton"
+              cols="10"
+              rows="14"
+              wrap="soft"
+              maxlength="100"
+              autocomplete="off"
+              required
+            ></textarea>
+            <label for="scamDescripton" class="descLabel"
+              >Scam description</label
+            >
+          </div>
+          <button
+            type="submit"
+            class="newScamBtn"
+            name="list"
+            value="Laca Scam List"
+          >
+            Add scam to the list
+          </button>
+        </form>
+
+        <a href="/" class="backBtn">Back to the list</a>
+      </div>
+    </section>
+    <footer><%= new Date().getFullYear() %> &copy; Varga Dániel</footer>
+  </body>
+</html>
