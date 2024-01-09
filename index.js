@@ -10,6 +10,11 @@ const pool = new Pool({
   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
 
+pool.connect((err) => {
+  if (err) throw err;
+  console.log("Sikeresen csatlakozva az adatbázishoz!");
+});
+
 const app = express();
 const port = 3000;
 
