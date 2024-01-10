@@ -10,7 +10,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  font-family: "UnifrakturCook", cursive;
   overflow: hidden;
 }
 
@@ -25,6 +24,7 @@ body {
 
 .header_title {
   font-size: 4.5rem;
+  font-family: "UnifrakturCook", cursive;
 }
 
 .navbar {
@@ -38,6 +38,7 @@ body {
 .navbar_element {
   display: inline-block;
   list-style: none;
+  font-family: "MedievalSharp", cursive;
 }
 
 .navbar_element a {
@@ -61,16 +62,18 @@ body {
 
 .scam_item {
   display: grid;
-  grid-template-columns: 70px 2fr 3fr;
+  grid-template-columns: 45px 2fr 3fr 150px;
   max-width: 700px;
+  gap: 1rem;
   color: #272727;
-  margin: 0 5rem 0.8rem 2rem;
   word-wrap: break-word;
   word-break: break-all;
+  font-family: "MedievalSharp", cursive;
+  margin-bottom: 0.8rem;
 }
 
 .scam_name {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
 .scam_description {
@@ -79,13 +82,19 @@ body {
   margin-left: 2rem;
 }
 
+.scam_time {
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+
 .deleteScam {
-  margin-top: 0.3rem;
   font-size: 1rem;
-  padding: 5px;
+  padding: 8px;
   border-radius: 10px;
   color: #272727;
-  font-family: "UnifrakturCook", cursive;
+  font-family: "MedievalSharp", cursive;
   cursor: pointer;
 }
 
@@ -108,8 +117,15 @@ footer {
   padding-top: 10px;
 }
 
+.scamDate {
+  padding-top: 3rem;
+  color: #41424c;
+  border-radius: 5px;
+}
+
 .scamTitle,
-.scamDescripton {
+.scamDescripton,
+.scamDate {
   display: block;
   width: 430px;
   border: none;
@@ -117,15 +133,17 @@ footer {
   border-bottom: 2px solid #272727;
   background-color: transparent;
   outline: none;
-  font-family: "UnifrakturCook", cursive;
+  font-family: "MedievalSharp", cursive;
 }
 
 .titleLabel,
-.descLabel {
+.descLabel,
+.dateLabel {
   position: relative;
   pointer-events: none;
   font-size: 18px;
   transition: all 0.3s ease;
+  font-family: "MedievalSharp", cursive;
 }
 
 .titleLabel {
@@ -136,16 +154,20 @@ footer {
   top: -80px;
 }
 
+.dateLabel {
+  top: -52px;
+}
+
 .scamTitle:focus ~ .titleLabel,
 .scamTitle:valid ~ .titleLabel {
-  top: -82px;
+  top: -85px;
   font-size: 16px;
   color: #41424c;
 }
 
 .scamDescripton:focus ~ .descLabel,
 .scamDescripton:valid ~ .descLabel {
-  top: -100px;
+  top: -110px;
   font-size: 16px;
   color: #41424c;
 }
@@ -160,7 +182,7 @@ footer {
   font-size: 17px;
   border: none;
   color: #272727;
-  font-family: "UnifrakturCook", cursive;
+  font-family: "MedievalSharp", cursive;
   letter-spacing: 1px;
   cursor: pointer;
   width: 200px;
@@ -170,7 +192,7 @@ footer {
   align-items: center;
   position: absolute;
   left: 50%;
-  bottom: 53.5%;
+  bottom: 42%;
   transform: translateX(-50%);
   transition: all 0.3s ease;
 }
@@ -184,8 +206,9 @@ footer {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 50%;
+  bottom: 39%;
   font-size: 18px;
   text-decoration: none;
   color: #272727;
+  font-family: "MedievalSharp", cursive;
 }

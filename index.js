@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import moment from "moment";
 
 import {} from "dotenv/config";
 
@@ -31,7 +32,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 async function checkScams() {
-  const result = await pool.query("SELECT * FROM scamlist ORDER BY id ASC");
+  const result = await pool.query(
+    "SELECT id, scam_name, scam_description, TO_CHAR(scam_time:: DATE, 'YYYY Month DD') AS scam_time FROM scamlist ORDER BY id ASC"
+  );
   let scams = result.rows;
   console.log(result.rows);
   return scams;
@@ -39,6 +42,11 @@ async function checkScams() {
 
 app.get("/", async (req, res) => {
   const scams = await checkScams();
+  let time = [];
+  scams.forEach((scam) => {
+    time.push(moment(scam.scam_time).format("MMMM Do YYYY"));
+  });
+  console.log(time);
   res.render("index.ejs", { scams: scams });
 });
 
@@ -49,11 +57,12 @@ app.get("/newscam", (req, res) => {
 app.post("/newscam", async (req, res) => {
   const title = req.body.newScamTitle;
   const description = req.body.newScamDescription;
+  const date = req.body.newScamDate;
 
   try {
     await pool.query(
-      "INSERT INTO scamlist (scam_name, scam_description) VALUES ($1, $2)",
-      [title, description]
+      "INSERT INTO scamlist (scam_name, scam_description, scam_time) VALUES ($1, $2, $3)",
+      [title, description, date]
     );
     res.redirect("/");
   } catch (error) {
