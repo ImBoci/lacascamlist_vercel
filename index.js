@@ -40,14 +40,58 @@ async function checkScams() {
   return scams;
 }
 
+function firstDigit(num) {
+  const len = String(Math.abs(num)).length;
+  const divisor = 10 ** (len - 1);
+  return Math.trunc(num / divisor);
+}
+
+async function checkAchievements() {
+  const result = await pool.query("SELECT * FROM achievements");
+  let achievements = result.rows;
+  console.log(achievements);
+  return achievements;
+}
+
+async function checkIfAcExists() {
+  const result = await pool.query(
+    "SELECT EXISTS(SELECT 1 FROM achievements WHERE ac_name = '10 scams achieved')"
+  );
+  let acExists = result.rows;
+  console.log(acExists);
+  return acExists;
+}
+
 app.get("/", async (req, res) => {
   const scams = await checkScams();
-  let time = [];
+  const acExists = await checkIfAcExists();
+
+  let id = [];
   scams.forEach((scam) => {
-    time.push(moment(scam.scam_time).format("MMMM Do YYYY"));
+    id.push(scam.id);
   });
-  console.log(time);
-  res.render("index.ejs", { scams: scams });
+
+  const id_len = id.length;
+
+  if (id.length % 10 === 0) {
+    await pool.query(
+      "INSERT INTO achievements(ac_name) SELECT ($1::VARCHAR || ' scams achieved') WHERE NOT EXISTS(SELECT ac_name FROM achievements WHERE ac_name = ($1 || ' scams achieved'))",
+      [id_len]
+    );
+  }
+
+  const progressLengthPercent = id.length * 10;
+  const progressLength =
+    progressLengthPercent - firstDigit(progressLengthPercent) * 100;
+  console.log(progressLength);
+
+  res.render("index.ejs", {
+    scams: scams,
+    progressLength: progressLengthPercent,
+    reset: progressLength,
+    id_len: id_len,
+    acExists: acExists,
+  });
 });
 
 app.get("/newscam", (req, res) => {
@@ -58,12 +102,20 @@ app.post("/newscam", async (req, res) => {
   const title = req.body.newScamTitle;
   const description = req.body.newScamDescription;
   const date = req.body.newScamDate;
+  await console.log(date);
 
   try {
-    await pool.query(
-      "INSERT INTO scamlist (scam_name, scam_description, scam_time) VALUES ($1, $2, $3)",
-      [title, description, date]
-    );
+    if (typeof date === "undefined" || date == null || date === "") {
+      await pool.query(
+        "INSERT INTO scamlist (scam_name, scam_description) VALUES ($1, $2)",
+        [title, description]
+      );
+    } else {
+      await pool.query(
+        "INSERT INTO scamlist (scam_name, scam_description, scam_time) VALUES ($1, $2, $3)",
+        [title, description, date]
+      );
+    }
     res.redirect("/");
   } catch (error) {
     console.log(error);
@@ -94,6 +146,11 @@ app.post("/deleteScam", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+app.get("/achievements", async (req, res) => {
+  const achievements = await checkAchievements();
+  res.render("achievements.ejs", { achievements: achievements });
 });
 
 app.listen(port, () => {

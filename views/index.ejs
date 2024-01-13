@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <section class="header">
@@ -31,6 +31,10 @@
     </section>
     <section class="main">
       <main>
+        <div class="achievement" id="achievement">
+          <img src="img/scamchievement.png" alt="Scam Ahievement Popup" />
+          <span class="ac_title"><%= id_len %> scams achieved!</span>
+        </div>
         <div class="scam_list">
           <% scams.forEach((scam) => { %>
           <div class="scam_item">
@@ -51,9 +55,38 @@
           </div>
           <% }) %>
         </div>
+        <div class="prog">
+          <h3 class="progress_title">
+            <a href="/achievements"
+              >Scam-o-meter (click for achievement list)</a
+            >
+          </h3>
+          <div class="progressbar" id="progressbar">
+            <span class="progress" id="progress"></span>
+          </div>
+        </div>
       </main>
     </section>
     <footer><%= new Date().getFullYear() %> &copy; Varga Dániel</footer>
 
+    <script>
+      const progress = document.getElementById("progress");
+      const progress_len = <%= progressLength %>;
+
+      if (progress_len > 100 && progress_len % 100 != 0) {
+        progress.style.width = <%= reset %> + "%";
+      } else {
+        progress.style.width = progress_len + "%";
+      }
+
+      const achievementsNumber = <%= id_len %>;
+      const achievementPopUp = document.getElementById("achievement");
+      if (achievementsNumber % 10 === 0) {
+        achievementPopUp.style.right = "15px"
+        setTimeout(() => {
+          achievementPopUp.style.right = "-1000px"
+        }, 3000)
+      }
+    </script>
   </body>
 </html>

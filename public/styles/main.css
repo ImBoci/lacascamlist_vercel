@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -49,13 +51,13 @@ body {
 .main {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 .scam_list {
   overflow-y: scroll;
-  margin-bottom: 15rem;
-  height: 670px;
+  margin-bottom: 25rem;
+  height: 630px;
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
@@ -192,7 +194,7 @@ footer {
   align-items: center;
   position: absolute;
   left: 50%;
-  bottom: 42%;
+  bottom: 41%;
   transform: translateX(-50%);
   transition: all 0.3s ease;
 }
@@ -206,9 +208,102 @@ footer {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 39%;
+  bottom: 38%;
   font-size: 18px;
   text-decoration: none;
   color: #272727;
   font-family: "MedievalSharp", cursive;
+}
+
+.achievement {
+  position: absolute;
+  top: 20px;
+  right: -1000px;
+  transition: all .3s ease;
+}
+
+.achievement img {
+  width: 600px;
+}
+
+.ac_title {
+  position: absolute;
+  color: white;
+  font-size: 50px;
+  top: 50px;
+  left: 110px;
+  font-family: 'VT323', monospace;
+}
+
+/* PROGRESSBAR */
+.progressbar {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  margin: 100px auto 0;
+  height: 20px;
+  background: #272727;
+  overflow: hidden;
+  top: -100px;
+}
+
+.prog {
+  position: absolute;
+  max-width: 500px;
+  width: 100%;
+  height: 100px;
+  left: 50%;
+  top: 200px;
+  transform: translateX(-50%);
+}
+
+.progress_title {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  width: 500px;
+  z-index: 100;
+  font-family: "MedievalSharp", cursive;
+}
+
+.progress_title a {
+  text-decoration: none;
+  color: white;
+}
+
+span.progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: #595a68;
+  transition: all 0.3s;
+}
+
+/* ACHIEVEMENTS */
+.ac_list {
+  overflow-y: scroll;
+  margin-bottom: 25rem;
+  height: 630px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.ac_item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 700px;
+  gap: 1rem;
+  color: #272727;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-family: "MedievalSharp", cursive;
+  margin-bottom: 0.8rem;
+}
+
+.ac_name {
+  font-size: 1.6rem;
 }

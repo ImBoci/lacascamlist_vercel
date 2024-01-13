@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturCook:wght@700&display=swap"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <section class="header">
@@ -30,6 +31,8 @@
               autofocus="true"
               required
               maxlength="50"
+              oninvalid="this.setCustomValidity('Kötelező ez a mező Te csöves!')"
+              oninput="this.setCustomValidity('')"
             />
             <label for="newScamTitle" class="titleLabel">Scam title</label>
             <!-- <input
@@ -49,6 +52,8 @@
               maxlength="100"
               autocomplete="off"
               required
+              oninvalid="this.setCustomValidity('Kötelező ez a mező Te csöves!')"
+              oninput="this.setCustomValidity('')"
             ></textarea>
             <label for="scamDescripton" class="descLabel"
               >Scam description</label
@@ -58,7 +63,6 @@
               name="newScamDate"
               class="scamDate"
               autocomplete="off"
-              required
             />
             <label for="newScamDate" class="dateLabel">Scam time</label>
           </div>

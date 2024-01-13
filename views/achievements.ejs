@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laca Scam List</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturCook:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <section class="header">
+      <nav class="navbar">
+        <h1 class="header_title">Laca Scam List</h1>
+      </nav>
+    </section>
+    <section class="main">
+      <div class="ac_list">
+        <% achievements.forEach((ac) => { %>
+        <div class="ac_item">
+          <h2 class="ac_name"><%= ac.ac_name %></h2>
+          
+        </div>
+        <% }) %>
+        <a href="/" class="backBtn">Back to the list</a>
+      </div>
+    </section>
+    <footer><%= new Date().getFullYear() %> &copy; Varga Dániel</footer>
+  </body>
+</html>
